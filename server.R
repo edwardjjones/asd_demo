@@ -34,7 +34,7 @@ dirs<<-paste0(getwd(),"/scans")
   
   
   output$Plot <- renderPlot({
-    tot_scans=(100/as.numeric(input$scan_res)+1)
+    tot_scans=(100/input$scan_res+1)
     #input$goButton
     #isolate({
       pars = c('plt','usr')
@@ -79,6 +79,7 @@ dirs<<-paste0(getwd(),"/scans")
       
       ###change this to predict TC and clay
       if(nrow(nir)>0){
+        do_epo<<-input$do_epo
         source(paste0(getwd(),"/read_only/R_code/predict_TC_clay.R"))
       }
       
@@ -99,19 +100,19 @@ dirs<<-paste0(getwd(),"/scans")
       par(par1)
       for(j in 1:nrow(nir)){
         
-        mid_pt=11-(j-1)*as.numeric(input$scan_res)/10
+        mid_pt=11-(j-1)*input$scan_res/10
         
-        polygon(x=c(0,0,1,1), y=c(mid_pt - as.numeric(input$scan_res)/20, mid_pt + as.numeric(input$scan_res)/20,
-                                  mid_pt + as.numeric(input$scan_res)/20, mid_pt - as.numeric(input$scan_res)/20),col=cols[j])  
+        polygon(x=c(0,0,1,1), y=c(mid_pt - input$scan_res/20, mid_pt + input$scan_res/20,
+                                  mid_pt + input$scan_res/20, mid_pt - input$scan_res/20),col=cols[j])  
       }
       
       ##Plot TC 
       par(par3)
-      points(predict_c[1:i], seq(11,0,-(as.numeric(input$scan_res)/10))[1:i], col="blue", pch=13, cex=2)
+      points(predict_c[1:i], seq(11,0,-(input$scan_res/10))[1:i], col="blue", pch=13, cex=2)
       
       ##Plot clay 
       par(par4)
-      points(predict_clay[1:i], seq(11,0,-(as.numeric(input$scan_res)/10))[1:i], col="red", pch=13, cex=2)
+      points(predict_clay[1:i], seq(11,0,-(input$scan_res/10))[1:i], col="red", pch=13, cex=2)
       
       ##Plot coloured spectra
       par(par2)
@@ -119,33 +120,34 @@ dirs<<-paste0(getwd(),"/scans")
       
       if(i < tot_scans){
         par(par1)
-        points(0.5,11-(as.numeric(input$scan_res)/10)*i, col="red", pch=16, cex=2)
+        points(0.5,11-(input$scan_res/10)*i, col="red", pch=16, cex=2)
         par(par2)
-        mtext(paste("Scan core at", i*as.numeric(input$scan_res) ,"cm"), outer=T, line = -3,  cex = 1.5)
+        mtext(paste("Scan core at", i*input$scan_res ,"cm"), outer=T, line = -3,  cex = 1.5)
       }else{
         mtext("Exporting data...", outer=T, line = -3,  cex = 1.5)
         cat("Exporting data...\n")
+        
         ##Export plot area
-        output$downloadPlot <- downloadHandler(
-          filename = function() { paste0(getwd(),"/out/",input$site_id,".png") },
-          content = function(file) {
-            png(file)
-            print(plotInput())
-            dev.off()
-          })
-        # 
-        # png()
-        # print(plotInput())
-        # dev.off()
+        ##COMING SOON
         
         ##Export NIR spectra
+        colnames(nir)=350:2500
+        temp=data.frame("ID"=rep(input$site_id,nrow(nir)),
+                        "upper_depth"=seq(0,100,length.out=tot_scans),
+                        "lower_depth"=seq(0,100,length.out=tot_scans))
+        nir=cbind(temp,nir)
+        
+        write.csv(nir,paste0(getwd(),"/out/",input$site_id,"_spectra.csv"),row.names = F)
         
         ##Export Prediction
+        temp=data.frame(temp,"TC"=predict_c,"clay"=predict_clay)
+        write.csv(temp,paste0(getwd(),"/out/",input$site_id,"_predictions.csv"),row.names = F)
         
         ##Delete ASD files
+        file.remove(list.files(paste0(getwd(),"/scans"),full.names=T))
         
         ##Close app
-        
+        stopApp(returnValue = invisible())
         }
       }
     #})

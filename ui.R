@@ -13,9 +13,9 @@ shinyUI(fluidPage(
       textInput("site_id", "Site ID:", value = "Site 1"),
       textInput("lat", "Latitude (dd):", value = "-33.896154"),
       textInput("long", "Longitude (dd):", value = "151.196253"),
-      selectInput("scan_res", "Scan resolution (cm)", choices=c(5,10), selected=5),
-      checkboxGroupInput("properties", "Properties:", 
-                         choices=c("TC","pH","CEC","Clay","Sand"), selected=c("TC","pH","CEC","Clay","Sand"))#,
+      numericInput("scan_res", "Scan resolution (cm)", value =5 ,min=5,max=10, step=5),
+      checkboxInput("do_epo", "Apply EPO? (moist condition)", 
+                         value = T)#,
       #actionButton("goButton", "Go!")
     ),
     
