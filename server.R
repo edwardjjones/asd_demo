@@ -147,7 +147,14 @@ dirs<<-paste0(getwd(),"/scans")
         file.remove(list.files(paste0(getwd(),"/scans"),full.names=T))
         
         ##Close app
-        stopApp(returnValue = invisible())
+        # stopApp(returnValue = invisible())
+        
+        ##reset i and nir
+        nir<<- NULL
+        i<<-0
+        predict_c<<-NULL
+        predict_clay<<-NULL
+        cols<<-NULL
         }
       }
     #})
