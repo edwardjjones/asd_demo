@@ -26,13 +26,13 @@ data("datsoilspc")
 setwd(".")
 
 ##load epo projection matrix
-p=read.delim(paste0(getwd(),"/read_only/EPO/EPO_projectionMatrix.txt"), header=F)
+p=read.delim(paste0(getwd(),"/ASD_demo/read_only/EPO/EPO_projectionMatrix.txt"), header=F)
 
 ##load pre-processing protocol
-source(paste0(getwd(),"/read_only/R_code/pre_process.R"))
+source(paste0(getwd(),"/ASD_demo/read_only/R_code/pre_process.R"))
 
 ##load EPO pre-processing protocol
-source(paste0(getwd(),"/read_only/R_code/pre_process_EPO.R"))
+source(paste0(getwd(),"/ASD_demo/read_only/R_code/pre_process_EPO.R"))
 
 ####Pre-processing
 preproc_nir = preproc(datsoilspc$spc)
@@ -79,7 +79,7 @@ gfv.cubist_predict
 ##export final model
 soil_c.cubist_model<-cubist(x= rbind(spec_c,spec_v), y=c(soil_c,soil_v), control=cubistControl(rules = 3, extrapolation=10), committees = 10)     
 TC_model=soil_c.cubist_model
-save("TC_model",file=paste0(getwd(),"/read_only/Models/TC_model.RData"))
+save("TC_model",file=paste0(getwd(),"/ASD_demo/read_only/Models/TC_model.RData"))
 
 
 ################################
@@ -120,7 +120,7 @@ gfv.cubist_predict
 ##export final model
 soil_c.cubist_model<-cubist(x= rbind(spec_c,spec_v), y=c(soil_c,soil_v), control=cubistControl(rules = 3, extrapolation=10), committees = 10)     
 TC_EPO_model=soil_c.cubist_model
-save("TC_EPO_model",file=paste0(getwd(),"/read_only/Models/TC_EPO_model.RData"))
+save("TC_EPO_model",file=paste0(getwd(),"/ASD_demo/read_only/Models/TC_EPO_model.RData"))
 
 
 ################################
@@ -161,7 +161,7 @@ gfv.cubist_predict
 ##export final model
 soil_c.cubist_model<-cubist(x= rbind(spec_c,spec_v), y=c(soil_c,soil_v), control=cubistControl(rules = 3, extrapolation=10), committees = 10)     
 clay_model=soil_c.cubist_model
-save("clay_model",file=paste0(getwd(),"/read_only/Models/clay_model.RData"))
+save("clay_model",file=paste0(getwd(),"/ASD_demo/read_only/Models/clay_model.RData"))
 
 
 ################################
@@ -202,7 +202,7 @@ gfv.cubist_predict
 ##export final model
 soil_c.cubist_model<-cubist(x= rbind(spec_c,spec_v), y=c(soil_c,soil_v), control=cubistControl(rules = 3, extrapolation=10), committees = 10)     
 clay_EPO_model=soil_c.cubist_model
-save("clay_EPO_model",file=paste0(getwd(),"/read_only/Models/clay_EPO_model.RData"))
+save("clay_EPO_model",file=paste0(getwd(),"/ASD_demo/read_only/Models/clay_EPO_model.RData"))
 
 # ##launch shiny
-# runApp("NIR_demo")
+runApp("ASD_demo")
