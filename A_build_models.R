@@ -66,13 +66,13 @@ soil_c.cubist_model<-cubist(x= spec_c, y=soil_c, control=cubistControl(rules = 3
 # Predict on the calibration data
 soil_c.cubist_predict<-predict(soil_c.cubist_model, spec_c)# predict the value of soil variable based on spectra
 # goodness of fit
-gfc.cubist_predict<- goof(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
+gfc.cubist_predict<- goof2(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
 
 # Now predict on the validation data
 soil_v.cubist_predict<-predict(soil_c.cubist_model, spec_v)# predict the value of soil variable based on spectra
 
 # goodness of fit
-gfv.cubist_predict<- goof(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
+gfv.cubist_predict<- goof2(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
 
 gfc.cubist_predict
 gfv.cubist_predict
@@ -107,13 +107,13 @@ soil_c.cubist_model<-cubist(x= spec_c, y=soil_c, control=cubistControl(rules = 3
 # Predict on the calibration data
 soil_c.cubist_predict<-predict(soil_c.cubist_model, spec_c)# predict the value of soil variable based on spectra
 # goodness of fit
-gfc.cubist_predict<- goof(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
+gfc.cubist_predict<- goof2(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
 
 # Now predict on the validation data
 soil_v.cubist_predict<-predict(soil_c.cubist_model, spec_v)# predict the value of soil variable based on spectra
 
 # goodness of fit
-gfv.cubist_predict<- goof(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
+gfv.cubist_predict<- goof2(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
 
 gfc.cubist_predict
 gfv.cubist_predict
@@ -148,13 +148,13 @@ soil_c.cubist_model<-cubist(x= spec_c, y=soil_c, control=cubistControl(rules = 3
 # Predict on the calibration data
 soil_c.cubist_predict<-predict(soil_c.cubist_model, spec_c)# predict the value of soil variable based on spectra
 # goodness of fit
-gfc.cubist_predict<- goof(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
+gfc.cubist_predict<- goof2(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
 
 # Now predict on the validation data
 soil_v.cubist_predict<-predict(soil_c.cubist_model, spec_v)# predict the value of soil variable based on spectra
 
 # goodness of fit
-gfv.cubist_predict<- goof(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
+gfv.cubist_predict<- goof2(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
 
 gfc.cubist_predict
 gfv.cubist_predict
@@ -189,13 +189,13 @@ soil_c.cubist_model<-cubist(x= spec_c, y=soil_c, control=cubistControl(rules = 3
 # Predict on the calibration data
 soil_c.cubist_predict<-predict(soil_c.cubist_model, spec_c)# predict the value of soil variable based on spectra
 # goodness of fit
-gfc.cubist_predict<- goof(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
+gfc.cubist_predict<- goof2(soil_c,soil_c.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Calibration")
 
 # Now predict on the validation data
 soil_v.cubist_predict<-predict(soil_c.cubist_model, spec_v)# predict the value of soil variable based on spectra
 
 # goodness of fit
-gfv.cubist_predict<- goof(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
+gfv.cubist_predict<- goof2(soil_v,soil_v.cubist_predict, xlab= "Observed", ylab="Predicted", main="Cubist Validation")
 
 gfc.cubist_predict
 gfv.cubist_predict
