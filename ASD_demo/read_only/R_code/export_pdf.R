@@ -32,15 +32,6 @@ axis(1,at=seq(51,2151,350), labels=seq(400,2500,350))
 par2 <- c(list(mfg=c(2,1)), par(pars))
 
 
-
-##predict colour
-waves=350:2500
-rgb_col=spectra2colour(rbind(nir[i,],nir[i,]), waves)[1,]
-rgb_col=rgb_col[,1:3]
-rgb_col=rgb_col*3.5
-rgb_col[rgb_col>1]=1
-cols<<-c(cols, rgb(rgb_col[1,1],rgb_col[1,2],rgb_col[1,3]))
-
 ##plot coloured polygon
 par(par1)
 for(j in 1:nrow(nir)){
