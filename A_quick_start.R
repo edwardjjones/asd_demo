@@ -1,5 +1,5 @@
 ##install and load packages
-req_pack_cran=c("Cubist","prospectr","asdreader","shiny")
+req_pack_cran=c("Cubist","asdreader","shiny","plyr","signal")
 
 for(p in req_pack_cran){
   if(p %in% rownames(installed.packages()) == F){
@@ -7,23 +7,16 @@ for(p in req_pack_cran){
   }
 }
 
-if("soilspec" %in% rownames(installed.packages()) == F){
-  devtools::install_github('AlexandreWadoux/soilspec')
-}
-
-if("spectroscopy" %in% rownames(installed.packages()) == F){
-  devtools::install_github("mariofajardo/Spectracus",ref="develop")
-}
-
 lapply(req_pack_cran, require, character.only = TRUE)
-lapply(c("soilspec","spectroscopy"), require, character.only = TRUE)
-
 
 ##set working directory
 setwd(".")
 
 ##load epo projection matrix
 p=read.delim(paste0(getwd(),"/ASD_demo/read_only/EPO/EPO_projectionMatrix.txt"), header=F)
+
+##load stored functions - packages unstable
+source(paste0(getwd(),"/ASD_demo/read_only/R_code/spec_fns_copy.R"))
 
 ##load pre-processing protocol
 source(paste0(getwd(),"/ASD_demo/read_only/R_code/pre_process.R"))
