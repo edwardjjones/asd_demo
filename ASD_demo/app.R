@@ -91,11 +91,12 @@ server = shinyServer(function(input, output, session) {
       
       ##predict colour
       waves=350:2500
-      rgb_col=spectra2colour(rbind(nir[i,],nir[i,]), waves)[1,]
-      rgb_col=rgb_col[,1:3]
+      rgb_col=c(r = mean(nir[i,which(waves%in%600:690)]),
+                g = mean(nir[i,which(waves%in%520:600)]),
+                b = mean(nir[i,which(waves%in%420:520)]))
       rgb_col=rgb_col*3.5
       rgb_col[rgb_col>1]=1
-      cols<<-c(cols, rgb(rgb_col[1,1],rgb_col[1,2],rgb_col[1,3]))
+      cols<<-c(cols, rgb(rgb_col[1],rgb_col[2],rgb_col[3]))
       
       ##plot coloured polygon
       par(par1)
