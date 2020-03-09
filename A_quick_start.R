@@ -23,17 +23,17 @@ lapply(c("soilspec","spectroscopy"), require, character.only = TRUE)
 setwd(".")
 
 ##load epo projection matrix
-p=read.delim(paste0(getwd(),"/read_only/EPO/EPO_projectionMatrix.txt"), header=F)
+p=read.delim(paste0(getwd(),"/ASD_demo/read_only/EPO/EPO_projectionMatrix.txt"), header=F)
 
 ##load pre-processing protocol
-source(paste0(getwd(),"/read_only/R_code/pre_process.R"))
+source(paste0(getwd(),"/ASD_demo/read_only/R_code/pre_process.R"))
 
 ##load EPO pre-processing protocol
-source(paste0(getwd(),"/read_only/R_code/pre_process_EPO.R"))
+source(paste0(getwd(),"/ASD_demo/read_only/R_code/pre_process_EPO.R"))
 
 ##load all predictive models
-mods=list.files(paste0(getwd(),"/read_only/Models"),full.names=T)
+mods=list.files(paste0(getwd(),"/ASD_demo/read_only/Models"),full.names=T)
 sapply(mods,load,.GlobalEnv)
 
 # ##launch shiny
-# runApp("NIR_demo")
+runApp("ASD_demo")
